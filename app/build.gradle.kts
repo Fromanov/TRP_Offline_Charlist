@@ -1,14 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
     namespace = "com.example.dndofflinecharlist"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.dndofflinecharlist"
@@ -29,9 +28,18 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    buildFeatures {
+        compose = true
     }
 }
 
@@ -41,6 +49,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,12 +67,9 @@ dependencies {
     // kotlinx.serialization (JSON)
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
-    // DataStore (индекс списка)
+    // DataStore
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
-    // Навигация (Type-Safe)
+    // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.2")
-
-    // Markdown рендер
-    implementation("dev.jeziellago.compose.markdowntext:markdowntext:0.5.1")
 }
