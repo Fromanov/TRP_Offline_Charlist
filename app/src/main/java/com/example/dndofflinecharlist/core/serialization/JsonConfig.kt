@@ -1,9 +1,9 @@
-package serialization
+package com.example.dndofflinecharlist.core.serialization
 
 import kotlinx.serialization.json.Json
 
 object JsonConfig {
-    val default: Json = Json{
+    val default: Json = Json {
         prettyPrint = false
         isLenient = true
         ignoreUnknownKeys = true
